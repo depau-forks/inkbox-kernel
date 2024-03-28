@@ -1,4 +1,0 @@
-config KOBO_COMMON
-	depends on MMC
-	bool
-	default n

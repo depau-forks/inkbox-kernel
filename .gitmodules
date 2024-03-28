@@ -4,3 +4,6 @@
 [submodule "inkbox-os-init"]
 	path = inkbox-os-init
 	url = https://github.com/Kobo-InkBox/inkbox-os-init
+[submodule "bootloader/u-boot-fslc"]
+	path = bootloader/u-boot-fslc
+	url = https://github.com/Kobo-InkBox/u-boot-fslc

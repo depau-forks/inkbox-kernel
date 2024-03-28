@@ -63,7 +63,7 @@ elif [ "${DEVICE}" == "n306" ] || [ "${DEVICE}" == "n306c" ]; then
 
 	popd
 elif [ "${DEVICE}" == "n249" ]; then
-	pushd "${GITDIR}/bootloader/mx6sll-n249"
+	pushd "${GITDIR}/bootloader/u-boot-fslc"
 
 	make ARCH=arm CROSS_COMPILE="${TARGET}-" -j${THREADS} distclean
 	make ARCH=arm CROSS_COMPILE="${TARGET}-" -j${THREADS} mx6sllclarahd_defconfig
