@@ -328,6 +328,12 @@ elif [ "$2" == "root" ]; then
 		make ARCH=arm CROSS_COMPILE=$TARGET- zImage -j$THREADS
 	elif [ "$1" == "n249" ]; then
 		cd "${GITDIR}/kernel/linux-5.16-n249"
+		echo "Building modules"
+		make ARCH=arm CROSS_COMPILE=$TARGET- modules -j$THREADS
+		make ARCH=arm CROSS_COMPILE=$TARGET- modules_install INSTALL_MOD_PATH=../../out-modules/ -j$THREADS
+		mkdir ../../out-modules/lib/modules/$(make -s kernelrelease)/kernel/$(make -s kernelrelease)
+		mksquashfs ../../out-modules/lib/modules  ../../initrd/n249/opt/modules.sqsh -all-root -noappend
+		echo "Building everything else"
 		make ARCH=arm CROSS_COMPILE=$TARGET- zImage dtbs -j$THREADS
 	elif [ "$1" == "kt" ]; then
 		cd "${GITDIR}/kernel/linux-2.6.31-kt"
