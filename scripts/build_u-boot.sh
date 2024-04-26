@@ -67,6 +67,12 @@ elif [ "${DEVICE}" == "n249" ]; then
 
 	make ARCH=arm CROSS_COMPILE="${TARGET}-" -j${THREADS} distclean
 	make ARCH=arm CROSS_COMPILE="${TARGET}-" -j${THREADS} mx6sllclarahd_defconfig
+	scripts/config --set-str BOOTCOMMAND "detect_clara_rev ; run distro_bootcmd ; fastboot 0"
+        scripts/config -e ENV_IS_IN_EXT4
+        scripts/config -d ENV_IS_IN_MMC
+        scripts/config --set-str ENV_EXT4_INTERFACE "mmc"
+        scripts/config --set-str ENV_EXT4_DEVICE_AND_PART "0:1"
+        scripts/config --set-str ENV_EXT4_FILE "/uboot.env"
 	make ARCH=arm CROSS_COMPILE="${TARGET}-" -j${THREADS}
 	cp "u-boot-dtb.imx" "${GITDIR}/bootloader/out/u-boot_inkbox.${DEVICE}.imx"
 
