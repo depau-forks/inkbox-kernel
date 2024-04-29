@@ -331,6 +331,11 @@ elif [ "$2" == "root" ]; then
 		echo "Building modules"
 		make ARCH=arm CROSS_COMPILE=$TARGET- modules -j$THREADS
 		make ARCH=arm CROSS_COMPILE=$TARGET- modules_install INSTALL_MOD_PATH=../../out-modules/ -j$THREADS
+		KSRC="$PWD"
+		cd ../modules/wifi-mk7
+		make -C "$KSRC" M="$PWD" ARCH=arm CROSS_COMPILE=$TARGET- CONFIG_RTL8189FS=m CONFIG_RTW_DEBUG=n CONFIG_RTW_SDIO_PM_KEEP_POWER=n modules -j$THREADS
+		make -C "$KSRC" M="$PWD" ARCH=arm CROSS_COMPILE=$TARGET- INSTALL_MOD_PATH=../../out-modules/ CONFIG_RTL8189FS=m modules_install -j$THREADS
+		cd -
 		mkdir ../../out-modules/lib/modules/$(make -s kernelrelease)/kernel/$(make -s kernelrelease)
 		mksquashfs ../../out-modules/lib/modules  ../../initrd/n249/opt/modules.sqsh -all-root -noappend
 		echo "Building everything else"
