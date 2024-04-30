@@ -1,0 +1,1 @@
+cmd_/home/build/inkbox/kernel/kernel/modules/wifi-mk7/Module.symvers := sed 's/\.ko$$/\.o/' /home/build/inkbox/kernel/kernel/modules/wifi-mk7/modules.order | scripts/mod/modpost -m -a  -o /home/build/inkbox/kernel/kernel/modules/wifi-mk7/Module.symvers -e -i Module.symvers   -T -
