@@ -2827,18 +2827,17 @@ void hwtcon_core_handle_auto_waveform(struct hwtcon_task *task)
         wf_mode = night_mode_wf_mode_table[current_grey][next_grey];
     else
         wf_mode = day_mode_wf_mode_table[current_grey][next_grey];
+    task->update_data.waveform_mode = wf_mode;
 
-	task->update_data.waveform_mode = wf_mode;
-
-	TCON_LVL_LOG(TCON_LVL_PIPELINE,"[%u] current_hist_stat = 0x%x[%d] next_hist_stat",
-		task->update_data.update_marker,
-		task->pipeline_info.current_histogram,
-		current_grey);
-	TCON_LVL_LOG(TCON_LVL_PIPELINE,"= 0x%x[%d] new waveform = 0x%x (%s)",
-		task->pipeline_info.next_histogram,
-		next_grey,
-		wf_mode,
-		hwtcon_core_get_wf_mode_name(wf_mode));
+    TCON_LVL_LOG(TCON_LVL_PIPELINE,"[%u] current_hist_stat = 0x%x[%d] next_hist_stat",
+	task->update_data.update_marker,
+	task->pipeline_info.current_histogram,
+	current_grey);
+    TCON_LVL_LOG(TCON_LVL_PIPELINE,"= 0x%x[%d] new waveform = 0x%x (%s)",
+	task->pipeline_info.next_histogram,
+	next_grey,
+	wf_mode,
+	hwtcon_core_get_wf_mode_name(wf_mode));
 }
 
 u64 hwtcon_core_get_released_lut(void)
