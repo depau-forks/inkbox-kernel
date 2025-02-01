@@ -185,7 +185,7 @@ elif [ "$1" == "n306" ]; then
 elif [ "$1" == "n306c" ] || [ "$1" == "n418" ]; then
 	cd "${GITDIR}/kernel/linux-4.1.15-$1"
 	make ARCH=arm CROSS_COMPILE=$TARGET- mrproper
-	cp "${GITDIR}/kernel/config/config-n306c" "${GITDIR}/kernel/linux-4.1.15-$1/.config"
+	cp "${GITDIR}/kernel/config/config-$1" "${GITDIR}/kernel/linux-4.1.15-$1/.config"
 elif [ "$1" == "n249" ]; then
 	cd "${GITDIR}/kernel/linux-5.16-n249"
 	make ARCH=arm CROSS_COMPILE=$TARGET- mrproper
@@ -276,7 +276,7 @@ if [ "$2" == "std" ]; then
 		make ARCH=arm CROSS_COMPILE=$TARGET- zImage dtbs -j$THREADS
 	elif [ "$1" == "n428" ]; then
 		cd "${GITDIR}/kernel/linux-4.9.77-n428"
-		make ARCH=arm CROSS_COMPILE=$TARGET- C_INCLUDE_PATH=drivers/misc/mediatek/emi/mt8512:drivers/devfreq:drivers/misc/mediatek/hwtcon:drivers/misc/mediatek/leds ARCH_CFLAGS="-Wno-error=stringop-overflow" ARCH_CXXFLAGS="-Wno-error=stringop-overflow" zImage -j$THREADS
+		make ARCH=arm CROSS_COMPILE=$TARGET- C_INCLUDE_PATH=drivers/misc/mediatek/emi/mt8512:drivers/devfreq:drivers/misc/mediatek/hwtcon:drivers/misc/mediatek/leds ARCH_CFLAGS="-Wno-error=stringop-overflow" ARCH_CXXFLAGS="-Wno-error=stringop-overflow" zImage dtbs -j$THREADS
 	elif [ "$1" == "kt" ]; then
 		cd "${GITDIR}/kernel/linux-2.6.31-kt"
 		make ARCH=arm CROSS_COMPILE=$TARGET- uImage -j$THREADS
@@ -372,7 +372,7 @@ elif [ "$2" == "root" ]; then
 		make ARCH=arm CROSS_COMPILE=$TARGET- zImage dtbs -j$THREADS
 	elif [ "$1" == "n428" ]; then
 		cd "${GITDIR}/kernel/linux-4.9.77-n428"
-		make ARCH=arm CROSS_COMPILE=$TARGET- C_INCLUDE_PATH=drivers/misc/mediatek/emi/mt8512:drivers/devfreq:drivers/misc/mediatek/hwtcon:drivers/misc/mediatek/leds ARCH_CFLAGS="-Wno-error=stringop-overflow" ARCH_CXXFLAGS="-Wno-error=stringop-overflow" zImage -j$THREADS
+		make ARCH=arm CROSS_COMPILE=$TARGET- C_INCLUDE_PATH=drivers/misc/mediatek/emi/mt8512:drivers/devfreq:drivers/misc/mediatek/hwtcon:drivers/misc/mediatek/leds ARCH_CFLAGS="-Wno-error=stringop-overflow" ARCH_CXXFLAGS="-Wno-error=stringop-overflow" zImage dtbs -j$THREADS
 	elif [ "$1" == "kt" ]; then
 		cd "${GITDIR}/kernel/linux-2.6.31-kt"
 		make ARCH=arm CROSS_COMPILE=$TARGET- uImage -j$THREADS
