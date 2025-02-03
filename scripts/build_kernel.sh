@@ -102,7 +102,7 @@ elif [ "$2" == "root" ]; then
 	echo "---- Building ROOT kernel for $1 ----"
 elif [ "$2" == "diags" ]; then
 	echo "---- Building DIAGNOSTICS kernel for $1 ----"
-elif [ "$2" == "spl" ] && [ "$1" == "n873" ]; then
+elif [ "$2" == "spl" ]; then
 	echo "---- Building SPL kernel for $1 ----"
 else
 	echo "You must specify a valid kernel type."
@@ -182,7 +182,7 @@ elif [ "$1" == "n306" ]; then
 	cd "${GITDIR}/kernel/linux-4.1.15-n306"
 	make ARCH=arm CROSS_COMPILE=$TARGET- mrproper
 	cp "${GITDIR}/kernel/config/config-n306" "${GITDIR}/kernel/linux-4.1.15-n306/.config"
-elif [ "$1" == "n306c" ] || [ "$1" == "n418" ]; then
+elif [ "$1" == "n306c" ]; then
 	cd "${GITDIR}/kernel/linux-4.1.15-$1"
 	make ARCH=arm CROSS_COMPILE=$TARGET- mrproper
 	cp "${GITDIR}/kernel/config/config-$1" "${GITDIR}/kernel/linux-4.1.15-$1/.config"
@@ -190,6 +190,14 @@ elif [ "$1" == "n249" ]; then
 	cd "${GITDIR}/kernel/linux-5.16-n249"
 	make ARCH=arm CROSS_COMPILE=$TARGET- mrproper
 	cp "${GITDIR}/kernel/config/config-n249" "${GITDIR}/kernel/linux-5.16-n249/.config"
+elif [ "$1" == "n418" ]; then
+	cd "${GITDIR}/kernel/linux-4.1.15-n418"
+	make ARCH=arm CROSS_COMPILE=$TARGET- mrproper
+	if [ "$2" == "spl" ]; then
+		cp "${GITDIR}/kernel/config/config-n418-spl" "${GITDIR}/kernel/linux-4.1.15-n418/.config"
+	else
+		cp "${GITDIR}/kernel/config/config-n418" "${GITDIR}/kernel/linux-4.1.15-n418/.config"
+	fi
 elif [ "$1" == "n428" ]; then
 	cd "${GITDIR}/kernel/linux-4.9.77-n428"
 	make ARCH=arm CROSS_COMPILE=$TARGET- mrproper
@@ -466,6 +474,9 @@ elif [ "$2" == "diags" ]; then
 elif [ "$2" == "spl" ]; then
 	if [ "$1" == "n873" ]; then
 		cd $GITDIR/kernel/linux-4.1.15-libra
+		make ARCH=arm CROSS_COMPILE=$TARGET- zImage -j$THREADS
+	elif [ "$1" == "n418" ]; then
+		cd $GITDIR/kernel/linux-4.1.15-n418
 		make ARCH=arm CROSS_COMPILE=$TARGET- zImage -j$THREADS
 	fi
 
