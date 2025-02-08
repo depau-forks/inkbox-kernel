@@ -5,7 +5,7 @@ Useful resources and documentation to build a kernel for InkBox.
 ## Build
 There are different toolchains in this repository. Depending on the device, a specific toolchain is needed.
 - `n705`, `n905b`, `n905c`, `n613`: `TOOLCHAINDIR="${GITDIR}/toolchain/gcc-4.8"` | You'll need to install 32-bit libraries on your system for it to work (unless you're on a 32-bit machine or VM, of course).<br>
-- `n236`, `n437`, `n306`, `n306c`, `n873`: `TOOLCHAINDIR="${GITDIR}/toolchain/arm-nickel-linux-gnueabihf"`
+- `n236`, `n437`, `n306`, `n306c`, `n873`, `n418`: `TOOLCHAINDIR="${GITDIR}/toolchain/arm-nickel-linux-gnueabihf"`
 - `kt`: `TOOLCHAINDIR="${GITDIR}/toolchain/gcc-4.4.1"`
 - `n249`: `TOOLCHAINDIR="${GITDIR}/toolchain/armv7l-linux-musleabihf-cross/"`
 <br>To compile a kernel for a device in particular (here, the Kobo Clara HD), use, for example:<br>
