@@ -7,3 +7,6 @@
 [submodule "bootloader/u-boot-fslc"]
 	path = bootloader/u-boot-fslc
 	url = https://github.com/Kobo-InkBox/u-boot-fslc
+[submodule "kernel/RTL8723DS"]
+	path = kernel/RTL8723DS
+	url = https://github.com/ntc-chip-revived/RTL8723DS
