@@ -198,7 +198,7 @@ elif [ "${1}" == "alert_splash" ]; then
 	LD_LIBRARY_PATH=/opt/fbink busybox chroot /splash /opt/fbink/fbink -bqk
 	/opt/bin/alert-ascii.sh /splash/alert.ascii "${2}"
 	LD_LIBRARY_PATH=/opt/fbink busybox chroot /splash /bin/sh "-c" "cat /alert.ascii | /opt/fbink/fbink -qbm -y ${ALERT_ROW}"
-	print_qr "https://inkbox.ddns.net/wiki/index.php?title=Boot_error_codes#${2}"
+	print_qr "https://github.com/Quill-OS/quill/wiki/Boot-error-codes#${2}"
 	LD_LIBRARY_PATH=/opt/fbink busybox chroot /splash /opt/fbink/fbink -qs
 elif [ "${1}" == "developer_splash" ]; then
 	while true; do
