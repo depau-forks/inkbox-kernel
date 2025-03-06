@@ -912,6 +912,14 @@ static int _detect_bootmode(void)
 		_load_isd_hwconfig();
 	}
 	
+#ifdef CONFIG_USB_BOOT
+	gptNtxHwCfg->m_val.bPCB = 46;
+	gptNtxHwCfg->m_val.bCustomer = 9;
+	gptNtxHwCfg->m_val.bDisplayResolution = 5;
+	gptNtxHwCfg->m_val.bTouchType = 4;
+	gptNtxHwCfg->m_val.bTouchCtrl = 8;
+#endif
+
 #if 1 //[ debug code .
 	printf("\n hwcfgp=%p,pcb=%d,customer=%d\n\n",gptNtxHwCfg,\
 			gptNtxHwCfg->m_val.bPCB,gptNtxHwCfg->m_val.bCustomer);

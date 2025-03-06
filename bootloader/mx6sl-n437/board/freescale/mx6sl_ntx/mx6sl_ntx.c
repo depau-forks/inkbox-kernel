@@ -1346,6 +1346,9 @@ int board_late_init(void)
 		char cBufA[32];
 		sprintf(cBufA,"mmc%d",0);
 		setenv("fastboot_dev",cBufA);
+#ifdef CONFIG_USB_BOOT
+		setenv("bootcmd", "bootm");
+#endif
 	}
 
 	if(2==gptNtxHwCfg->m_val.bUIStyle) {
