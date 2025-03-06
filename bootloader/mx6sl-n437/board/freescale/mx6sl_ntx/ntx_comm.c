@@ -454,8 +454,8 @@ void _load_isd_hwconfig(void)
 	unsigned long dwChk;
 	int iSD_IDX;
 
-#ifdef CONFIG_MFG
-	gptNtxHwCfg = 0x9FFFFE00;
+#ifdef CONFIG_USB_BOOT
+	gptNtxHwCfg = 0x8783920c;
 	gdwNtxHwCfgSize = 110;
 	return;
 #endif

@@ -48,8 +48,16 @@ elif [ "${DEVICE}" == "n437" ]; then
 	pushd "${GITDIR}/bootloader/mx6sl-n437"
 
 	make ARCH=arm CROSS_COMPILE="${TARGET}-" -j${THREADS} distclean
+	if [ "${2}" == "usb-boot" ]; then
+		CONFIG="include/configs/mx6sl_ntx_lpddr2.h"
+		cp "${CONFIG}" "${CONFIG}.bak"
+		sed -i '3i #define CONFIG_USB_BOOT' "${CONFIG}"
+	fi
 	make ARCH=arm CROSS_COMPILE="${TARGET}-" -j${THREADS} mx6sl_ntx_lpddr2_config
 	make ARCH=arm CROSS_COMPILE="${TARGET}-" -j${THREADS}
+	if [ "${2}" == "usb-boot" ]; then
+		mv "${CONFIG}.bak" "${CONFIG}"
+	fi
 	cp "u-boot.bin" "${GITDIR}/bootloader/out/u-boot_inkbox.${DEVICE}.bin"
 
 	popd
