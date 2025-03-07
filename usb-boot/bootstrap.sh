@@ -1,6 +1,6 @@
 #!/bin/sh
 
-IP="192.168.2.1"
+IP="192.168.2.3"
 
 nbd-client "${IP}" 10809 /dev/nbd0
 nbd-client "${IP}" 10810 /dev/nbd1

@@ -1,8 +1,13 @@
 #!/bin/sh
 
-IP="192.168.2.1"
+IP="192.168.2.3"
 PORT="8000"
 BOOTSTRAP_SCRIPT="bootstrap.sh"
+DHCP_CONF="/tmp/usbnet-dhcp.conf"
+
+printf "start ${IP}\nend $(echo "${IP}" | rev | cut -d'.' -f2- | rev).254\ninterface usb0\n" > "${DHCP_CONF}"
+udhcpd "${DHCP_CONF}"
+
 cd /
 while ! timeout 10 wget "${IP}:${PORT}/${BOOTSTRAP_SCRIPT}"; do continue; done
 chmod +x "${BOOTSTRAP_SCRIPT}"
