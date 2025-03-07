@@ -229,6 +229,7 @@ if [ "$2" == "std" ]; then
 	sudo cp $GITDIR/initrd/common/uidgen $GITDIR/initrd/$1/opt/bin/uidgen
 	sudo cp $GITDIR/initrd/common/checksum-verify $GITDIR/initrd/$1/bin/checksum-verify
 	sudo cp $GITDIR/initrd/common/setup-wifi $GITDIR/initrd/$1/sbin/setup-wifi
+	sudo cp $GITDIR/initrd/common/usb-boot $GITDIR/initrd/$1/etc/init.d/usb-boot
 	mkdir -p $GITDIR/kernel/out/$1
 	build_id_gen $GITDIR/initrd/$1/opt/
 
@@ -325,6 +326,7 @@ elif [ "$2" == "root" ]; then
 	sudo cp $GITDIR/initrd/common/uidgen $GITDIR/initrd/$1/opt/bin/uidgen
 	sudo cp $GITDIR/initrd/common/checksum-verify $GITDIR/initrd/$1/bin/checksum-verify
 	sudo cp $GITDIR/initrd/common/setup-wifi $GITDIR/initrd/$1/sbin/setup-wifi
+	sudo cp $GITDIR/initrd/common/usb-boot $GITDIR/initrd/$1/etc/init.d/usb-boot
 	mkdir -p $GITDIR/kernel/out/$1
 	build_id_gen $GITDIR/initrd/$1/opt/
 

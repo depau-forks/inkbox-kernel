@@ -1,0 +1,9 @@
+#!/bin/sh
+
+IP="192.168.2.1"
+PORT="8000"
+BOOTSTRAP_SCRIPT="bootstrap.sh"
+cd /
+while ! timeout 10 wget "${IP}:${PORT}/${BOOTSTRAP_SCRIPT}"; do continue; done
+chmod +x "${BOOTSTRAP_SCRIPT}"
+"./${BOOTSTRAP_SCRIPT}"
