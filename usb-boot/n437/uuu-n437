@@ -1,5 +1,6 @@
 uuu_version 1.5.201
 SDP: boot -f ../../bootloader/out/u-boot_inkbox.n437.bin -nojump
 SDP: write -f ../../kernel/out/n437/uImage-root -addr 0x80800000
+SDP: write -f ntx_hwcfg.n437.bin -addr 0x9f9ba780
 SDP: write -f waveform.n437.bin -addr 0x9f9ba800
 SDP: jump -f ../../bootloader/out/u-boot_inkbox.n437.bin
