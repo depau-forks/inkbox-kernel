@@ -1084,6 +1084,12 @@ void _load_isd_hwconfig(void)
 	return;
 #endif
 	
+#ifdef CONFIG_USB_BOOT
+	gptNtxHwCfg = 0x9FFFFe00;
+	gdwNtxHwCfgSize = 110;
+	return;
+#endif
+
 	if(gptNtxHwCfg) {
 		return ;
 	}
@@ -1118,8 +1124,6 @@ void _load_esd_hwconfig(void)
 	unsigned long dwChk;
 	int iSD_IDX;	
 	unsigned char *pbSectTempBuf = NtxHiddenMem_get_topaddr()-512;
-
-
 
 	if(gptEsdNtxHwCfg) {
 		return ;

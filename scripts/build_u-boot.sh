@@ -48,15 +48,13 @@ elif [ "${DEVICE}" == "n437" ]; then
 	pushd "${GITDIR}/bootloader/mx6sl-n437"
 
 	make ARCH=arm CROSS_COMPILE="${TARGET}-" -j${THREADS} distclean
+	CONFIG="include/configs/mx6sl_ntx_lpddr2.h"
+	git restore "${CONFIG}"
 	if [ "${2}" == "usb-boot" ]; then
-		CONFIG="include/configs/mx6sl_ntx_lpddr2.h"
 		sed -i '3i #define CONFIG_USB_BOOT' "${CONFIG}"
 	fi
 	make ARCH=arm CROSS_COMPILE="${TARGET}-" -j${THREADS} mx6sl_ntx_lpddr2_config
 	make ARCH=arm CROSS_COMPILE="${TARGET}-" -j${THREADS}
-	if [ "${2}" == "usb-boot" ]; then
-		git restore "${CONFIG}"
-	fi
 	cp "u-boot.bin" "${GITDIR}/bootloader/out/u-boot_inkbox.${DEVICE}.bin"
 
 	popd
@@ -82,6 +80,20 @@ elif [ "${DEVICE}" == "n249" ]; then
         scripts/config --set-str ENV_EXT4_FILE "/uboot.env"
 	make ARCH=arm CROSS_COMPILE="${TARGET}-" -j${THREADS}
 	cp "u-boot-dtb.imx" "${GITDIR}/bootloader/out/u-boot_inkbox.${DEVICE}.imx"
+
+	popd
+elif [ "${DEVICE}" == "n418" ]; then
+	pushd "${GITDIR}/bootloader/mx6sll-n418"
+
+	make ARCH=arm CROSS_COMPILE="${TARGET}-" -j${THREADS} distclean
+	CONFIG="include/configs/mx6sll_ntx.h"
+	git restore "${CONFIG}"
+	if [ "${2}" == "usb-boot" ]; then
+		sed -i '11i #define CONFIG_USB_BOOT' "${CONFIG}"
+	fi
+	make ARCH=arm CROSS_COMPILE="${TARGET}-" -j${THREADS} mx6sll_ntx_lpddr2_512m_E70K10_defconfig
+	make ARCH=arm CROSS_COMPILE="${TARGET}-" -j${THREADS}
+	cp "u-boot.imx" "${GITDIR}/bootloader/out/u-boot_inkbox.${DEVICE}.imx"
 
 	popd
 elif [ "${DEVICE}" == "kt" ]; then
