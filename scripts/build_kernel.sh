@@ -478,6 +478,7 @@ elif [ "$2" == "spl" ]; then
 		cd $GITDIR/kernel/linux-4.1.15-libra
 		make ARCH=arm CROSS_COMPILE=$TARGET- zImage -j$THREADS
 	elif [ "$1" == "n418" ]; then
+		cp $GITDIR/initrd/common/usb-boot $GITDIR/initrd/n418-spl/etc/init.d/usb-boot
 		cd $GITDIR/kernel/linux-4.1.15-n418
 		make ARCH=arm CROSS_COMPILE=$TARGET- zImage -j$THREADS
 	fi
@@ -485,7 +486,7 @@ elif [ "$2" == "spl" ]; then
 	if [ "$?" == 0 ]; then
 		echo "---- SPL kernel compiled. ----"
 		cp "arch/arm/boot/zImage" "$GITDIR/kernel/out/$1/zImage-spl"
-		echo "---- Output was saved in $GITDIR/kernel/out/$1/zImage ----"
+		echo "---- Output was saved in $GITDIR/kernel/out/$1/zImage-spl ----"
 		exit 0
 	else
 		echo "---- There was an error during the build process, aborting... ----"

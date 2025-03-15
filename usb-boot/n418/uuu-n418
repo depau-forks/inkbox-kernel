@@ -1,7 +1,7 @@
 uuu_version 1.5.201
 SDP: boot -f ../../bootloader/out/u-boot_inkbox.n418.imx -nojump
+SDP: write -f ntx_hwcfg_and_waveform.n418.bin -addr 0x8fdf8800
 SDP: write -f imx6sll-e70k14.dtb -addr 0x83000000 
-SDP: write -f ../../kernel/out/n418/zImage-root -addr 0x80800000
-SDP: write -f ntx_hwcfg_and_waveform.n418.bin -addr 0x9fdf8800
+SDP: write -f ../../kernel/out/n418/zImage-spl -addr 0x80800000
 SDP: write -f ntxfw.n418.bin -addr 0x9fdf5a00
 SDP: jump -f ../../bootloader/out/u-boot_inkbox.n418.imx

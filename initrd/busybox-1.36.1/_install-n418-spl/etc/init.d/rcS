@@ -15,11 +15,16 @@ uname -a; echo "Quill OS Linux SPL kernel release ${CPR_RL} - Copyright (C) ${CP
 
 /usr/local/bin/auto-boot.sh
 if [ ${?} != 0 ]; then
-	mkdir -p /boot
-	mount -t ext4 /dev/mmcblk0p1 /boot
-	kexec -l /boot/zImage
-	sync
-	umount -l -f /boot
-	sync
-	kexec -e
+	if [ -e "/dev/mmcblk0" ]; then
+		mkdir -p /boot
+		mount -t ext4 /dev/mmcblk0p1 /boot
+		kexec -l /boot/zImage
+		sync
+		umount -l -f /boot
+		sync
+		kexec -e
+	else
+		echo "MMC/eMMC not found: attempting USB network boot"
+		/etc/init.d/usb-boot
+	fi
 fi

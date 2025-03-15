@@ -1085,8 +1085,9 @@ void _load_isd_hwconfig(void)
 #endif
 	
 #ifdef CONFIG_USB_BOOT
-	gptNtxHwCfg = 0x9FFFFe00;
+	gptNtxHwCfg = 0x9FFFFE00;
 	gdwNtxHwCfgSize = 110;
+	run_command("cp 0x8fdf8800 0x9fdf8800 0x20766e", 0);
 	return;
 #endif
 

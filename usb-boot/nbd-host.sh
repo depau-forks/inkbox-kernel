@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sudo chown "${USER}:${USER}" /dev/loop${1}
+sudo chown "${USER}:${USER}" /dev/loop${1}p*
 nbdkit file /dev/loop${1} -p 10809
 nbdkit file /dev/loop${1}p1 -p 10810
 nbdkit file /dev/loop${1}p2 -p 10811

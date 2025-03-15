@@ -829,6 +829,9 @@ void board_fastboot_setup(void)
 			setenv("fastboot_dev", "mmc1");
 		if (!getenv("bootcmd"))
 			setenv("bootcmd", "boota mmc1");
+#ifdef CONFIG_USB_BOOT
+		setenv("bootcmd", "bootz 0x80800000 - 0x83000000");
+#endif
 		break;
 #endif /*CONFIG_FASTBOOT_STORAGE_MMC*/
 #if defined(CONFIG_FASTBOOT_STORAGE_NAND)

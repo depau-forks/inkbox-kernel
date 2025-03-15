@@ -5,10 +5,7 @@ PORT="8000"
 if [ -e "/etc/init.d/init" ]; then
 	BOOTSTRAP_SCRIPT="bootstrap.sh"
 else
-	# SPL kernel is running!
 	BOOTSTRAP_SCRIPT="bootstrap-spl.sh"
-	insmod /lib/modules/g_ether.ko
-	ifconfig usb0 192.168.2.2
 fi
 DHCP_CONF="/tmp/usbnet-dhcp.conf"
 
